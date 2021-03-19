@@ -73,7 +73,8 @@ products.forEach(function (product) {
     console.log(product.id + " " + product.price)
 });
 
-// 4. 1. Получить все товары, у которых есть фотографии. 2. Отсортируйте товары по цене (от низкой цены к высокой).
+// 4. 
+// 4.1. Получить все товары, у которых есть фотографии. 
 
 const products = [
     {
@@ -101,3 +102,39 @@ const products = [
         price: 78,
     },
 ];
+
+/*
+правильное решение в итоге подсмотрел у вас.
+
+У меня в таком варианте подтягивался пустой массив:
+
+let havePhotos = products.filter(function (product) {
+    return product.photos;
+});
+
+хотел решить это так, но product.photos.length выдает ощибку:
+
+let havePhotos = products.filter(function (product) {
+    return product.photos.length > 0;
+});
+
+*/
+
+let havePhotos = products.filter(product => "photos" in product && product.photos.length > 0);
+
+console.log(havePhotos);
+
+// 4.2. Отсортируйте товары по цене (от низкой цены к высокой).
+
+let queue = products.sort(function (a, b) {
+    if (a.price > b.price) {
+        return 1;
+    }
+    if (a.price < b.price) {
+        return -1;
+    }
+    return 0;
+});
+
+
+console.log(queue);
