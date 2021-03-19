@@ -138,3 +138,12 @@ let queue = products.sort(function (a, b) {
 
 
 console.log(queue);
+
+//5. Вывести с помощью цикла for числа от 0 до 9, НЕ используя тело цикла.
+for (let i = 0; i <= 9; console.log(i++)) { }
+
+//6. Нарисовать горку с помощью console.log (используя цикл for)
+
+for (let i = 1; i <= 20; i++) {
+    console.log("x".repeat(i));
+}
