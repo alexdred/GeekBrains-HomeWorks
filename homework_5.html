@@ -1,0 +1,337 @@
+<!-- Задание 1.1.1. Используя поиск по id, получите ссылку с текстом link4 и выведите ее в консоль. -->
+
+<body>
+    <a href="#">link1</a>
+    <a href="#">link2</a>
+    <a href="#">link3</a>
+    <a href="#" id="four">link4</a>
+
+    <script>
+        "use strict";
+        let link4 = document.getElementById("four");
+        console.log(link4);
+    </script>
+</body>
+
+<!-- Задание 1.1.2. Используя поиск по имени класса, получите все элементы с классом .one и выведите их в консоль. -->
+
+<body>
+    <p class="one">параграф 1</p>
+    <p>параграф</p>
+    <p class="one">параграф 2</p>
+    <h3 class="one">заголовок 1</h3>
+    <h3>заголовок 2</h3>
+
+    <script>
+        "use strict";
+        let links = document.getElementsByClassName("one");
+        console.log(links);
+    </script>
+</body>
+
+<!-- Задание 1.1.3. Используя поиск по селектору (метод querySelectorAll) найдите только те ссылки с классом .card-link, которые находятся в .card-body и выведите их в консоль. -->
+
+<body>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">
+                Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+            </p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+    </div>
+
+    <script>
+        let cardBodyLinks = document.querySelectorAll("div.card-body > a.card-link");
+        console.log(cardBodyLinks);
+    </script>
+</body>
+
+<!-- Задание 1.1.4. Используя поиск по селектору (метод querySelector) найдите div с атрибутом aria-valuenow="50" и выведите его в консоль. -->
+
+<body>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+            aria-valuemax="100"></div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+            aria-valuemax="100"></div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+            aria-valuemax="100"></div>
+    </div>
+
+    <script>
+        let divWithAttr = document.querySelector('div[aria-valuenow="50"]');
+        console.log(divWithAttr);
+    </script>
+</body>
+
+<!-- Задание 1.1.5. Выведите содержимое тега title в консоль. -->
+
+<body>
+
+    <script>
+        let title = document.title;
+        console.log(title);
+    </script>
+</body>
+
+<!-- Задание 1.2.1. Обратитесь к элементу с классом .mt-0 и получите его родителя - элемент с классом .media-body. -->
+
+<body>
+    <div class="media">
+        <img src="..." class="align-self-start mr-3" alt="...">
+        <div class="media-body">
+            <h5 class="mt-0">Top-aligned media</h5>
+            <p>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
+                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+                fringilla. Donec lacinia congue felis in faucibus.
+            </p>
+            <p>
+                Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus
+                et
+                magnis dis parturient montes, nascetur ridiculus mus.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let hMt = document.querySelector('h5.mt-0');
+        let parentDiv = hMt.parentNode;
+        console.log(parentDiv);
+    </script>
+</body>
+
+<!-- Задание 1.2.2. Добавьте в div c помощью appendChild следующую разметку: <h3>hello world</h3> -->
+
+<body>
+
+    <div>
+
+    </div>
+
+    <script>
+        let div = document.querySelector("div");
+        let h3 = document.createElement("h3");
+        div.appendChild(h3);
+        h3.innerHTML = "hello world";
+    </script>
+</body>
+
+<!-- Задание. 1.2.3
+    1. Найдите элемент с классом .btn-outline-warning и удалите его.
+    2. Аналогичным образом удалите элемент с классом .btn-outline-dark -->
+
+<body>
+    <button type="button" class="btn btn-outline-primary">Primary</button>
+    <button type="button" class="btn btn-outline-secondary">Secondary</button>
+    <button type="button" class="btn btn-outline-success">Success</button>
+    <button type="button" class="btn btn-outline-danger">Danger</button>
+    <button type="button" class="btn btn-outline-warning">Warning</button>
+    <button type="button" class="btn btn-outline-info">Info</button>
+    <button type="button" class="btn btn-outline-light">Light</button>
+    <button type="button" class="btn btn-outline-dark">Dark</button>
+
+    <script>
+        document.querySelector('.btn-outline-warning').remove();
+        document.querySelector('.btn-outline-dark').remove();
+    </script>
+</body>
+
+<!-- Задание 1.2.4. Найдите кнопку с классом .btn-info и сделайте текст в кнопке: "Кнопка".-->
+
+<body>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-secondary">Secondary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-light">Light</button>
+    <button type="button" class="btn btn-dark">Dark</button>
+
+    <button type="button" class="btn btn-link">Link</button>
+
+    <script>
+        let btnInfo = document.querySelector('.btn-info');
+        btnInfo.innerHTML = "Кнопка";
+    </script>
+</body>
+
+<!-- Задание 1.3.1. Найдите тег ul. И добавьте ему класс one. -->
+
+<body>
+    <ul>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+        <li>list item</li>
+    </ul>
+
+    <script>
+        let ul = document.querySelector('ul');
+        ul.classList.add('one');
+    </script>
+</body>
+
+<!-- Задание 1.3.2. Найдите элемент с классом .nav-link и используя метод toggle из свойства classList у элемента, добавьте или уберите класс .active. -->
+
+<body>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+        </li>
+    </ul>
+
+    <script>
+        let navLink = document.querySelector('.nav-link');
+        navLink.classList.toggle('active');
+    </script>
+</body>
+
+<!-- Задание 1.3.3. Найдите элемент с классом .dropdown-menu и удалите этот класс, используя свойство classList у элемента, и метод remove(). -->
+
+<body>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+        <div class="menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </div>
+
+    <script>
+        let drop = document.querySelector('.dropdown-menu');
+        drop.classList.remove('dropdown-menu');
+    </script>
+</body>
+
+<!-- Задание 1.3.4. Добавьте в div с классом .menu следующую разметку:
+    <a href="#">link</a> используя метод insertAdjacentHTML. -->
+
+<body>
+    <div class="menu"></div>
+
+    <script>
+        let menu = document.querySelector('.menu');
+        menu.insertAdjacentHTML('afterbegin', '<a href="#">link</a>');
+    </script>
+</body>
+
+<!-- Задание 1.3.5. Выведите в консоль значение атрибутов data-dismiss
+    и aria-label с помощью метода getAttribute. -->
+
+<body>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
+    <script>
+        let btn = document.querySelector("button");
+        let dataDismiss = btn.getAttribute("data-dismiss");
+        let ariaLabel = btn.getAttribute("aria-label");
+        console.log(dataDismiss + " " + ariaLabel);
+    </script>
+</body>
+
+<!-- Задание 1.3.6. Добавьте заголовку атрибут data-one="один" и атрибут
+    data-two="два" с помощью метода setAttribute. -->
+
+<body>
+    <h1>Заголовок</h1>
+
+    <script>
+        let h = document.querySelector("h1");
+        h.setAttribute("data-one", "один");
+        h.setAttribute("data-two", "два");
+    </script>
+</body>
+
+<!-- Задание 1.3.7. найдите заголовок с id="title" и замените значение id на что-то другое. -->
+
+<body>
+    <article>
+        <h2>title</h2>
+        text
+    </article>
+    <article>
+        <h2 id="title">title</h2>
+        text
+    </article>
+
+    <script>
+        let hTitle = document.querySelector("#title");
+        hTitle.setAttribute("id", "new-id");
+    </script>
+</body>
+
+<!-- Задание 1.4.1. Отследите когда все теги будут добавлены на страницу (событие
+    DOMContentLoaded) и выведите alert'ом сообщение: "все теги добавлены на cтраницу". -->
+
+<body>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            alert("все теги добавлены на страницу");
+        });
+    </script>
+</body>
+
+<!-- Задание 1.4.2. Дождитесь когда все картинки загрузятся (событие load) и
+    покажите с помощью alert сообщение: "все картинки загружены". -->
+
+<body>
+    <img src="https://placeimg.com/1000/1000/animals" alt="">
+    <img src="https://placeimg.com/1000/1000/arch" alt="">
+    <img src="https://placeimg.com/1000/1000/nature" alt="">
+    <img src="https://placeimg.com/1000/1000/people" alt="">
+    <img src="https://placeimg.com/1000/1000/tech" alt="">
+    <img src="https://placeimg.com/1000/1000/tech/grayscale" alt="">
+    <img src="https://placeimg.com/1000/1000/tech/sepia" alt="">
+
+    <script>
+        window.addEventListener("load", function (event) {
+            alert("все картинки загружены");
+        });
+    </script>
+</body>
+
+<!-- Задание 1.4.3. Сделайте, чтобы по клику по кнопке с классом .btn появлялся
+    alert('клик') -->
+
+<body>
+    <button>Кнопка</button>
+    <button class="btn">Кнопка с классом btn</button>
+    <button>Кнопка</button>
+
+    <script>
+        let btn = document.querySelector(".btn");
+        btn.addEventListener("click", function (event) {
+            alert("клик");
+        });
+    </script>
+</body>
+
+<!-- Задание 1.4.4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение: "вы навели на textarea" -->
