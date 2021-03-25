@@ -335,3 +335,345 @@
 </body>
 
 <!-- Задание 1.4.4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение: "вы навели на textarea" -->
+
+<body>
+    <textarea></textarea>
+
+    <!-- Задание. Сделайте, чтобы при наведении на textarea в консоли
+    появлялось сообщение: "вы навели на textarea" -->
+
+    <script>
+        let textArea = document.querySelector("textarea");
+        textArea.addEventListener("mouseover", function (event) {
+            console.log("вы навели на textarea");
+        });
+    </script>
+</body>
+
+<!-- Задание 2.1.1. 
+    1. Сохраните в переменную коллекцию с картинками.
+    2. Пробегитесь по этой коллекции с помощью цикла или forEach
+    и выведите каждую картинку в консоль. Выведите в консоль только
+	элементы коллекции, не нужно пытаться сделать, чтобы в консоли
+	появилось изображение. -->
+
+<body>
+    <img src="https://placeimg.com/100/100/animals" alt="">
+    <img src="https://placeimg.com/100/100/arch" alt="">
+    <img src="https://placeimg.com/100/100/people" alt="">
+
+    <script>
+        let imgs = document.querySelectorAll("img");
+        for (i = 0; i < imgs.length; i++) {
+            console.log(imgs[i]);
+        }
+    </script>
+</body>
+
+<!-- Задание 2.1.2.
+    1. Сохраните в переменную коллекцию элементов с классом one. Для получения
+    элементов используйте метод. getElementsByClassName() 
+    2. С помощью цикла переберите эту коллекцию и выведите в консоль название тега.
+    -->
+
+<body>
+    <h3 class="one">Заголовок</h3>
+    <a class="one" href="#">ссылка</a>
+    <p class="one">параграф</p>
+
+    <script>
+        let one = document.getElementsByClassName("one");
+        for (i = 0; i < one.length; i++) {
+            console.log(one[i].tagName);
+        }
+    </script>
+</body>
+
+<!-- Задание 2.1.3.
+    1. Сохраните в переменную коллекцию с тегами h2, используйте метод getElementsByTagName()
+    2. Пробегитесь по этой коллекции с помощью цикла и выведите в консоль значение
+    атрибута class, используя свойство className.
+    -->
+
+<body>
+    <h2 class="one lorem">Заголовок 1</h2>
+    <h2 class="two ipsum">Заголовок 2</h2>
+    <h2 class="three">Заголовок 3</h2>
+
+    <script>
+        let h3s = document.getElementsByTagName("h2");
+        for (i = 0; i < h3s.length; i++) {
+            console.log(h3s[i].getAttribute("class"));
+        }
+        console.log(h3s);
+
+    </script>
+</body>
+
+<!-- Задание 2.1.4.
+    1. Сохраните в переменную тег div.
+    2. Создайте переменную classes, и в нее сохраните значение свойства classList.
+    3. C помощью forEach переберите classes и выведите каждый класс в консоль.
+     -->
+
+<body>
+    <div class="one two three"></div>
+
+    <script>
+        let div = document.querySelector("div");
+        let classes = div.classList;
+        classes.forEach(element => console.log(element));
+    </script>
+</body>
+
+<!-- Задание 2.1.5.
+    1. Вам нужно получить этот div.
+    2. Затем обратитесь к списку классов и с помощью метода contains()
+    проверьте есть ли класс hidden у этого тега.
+     -->
+
+<body>
+    <div class="product hidden"></div>
+    <script>
+        let div = document.querySelector("div");
+        let classes = div.classList;
+        let ifContains = classes.contains("hidden");
+        console.log(ifContains);
+    </script>
+</body>
+
+<!-- Задание 2.1.6.
+    1. Найдите все "карточки" с классом .card.
+    2. Проверьте есть ли у карточки класс hidden с помощью метода contains(),
+    и если есть, то удалите с помощью метода remove(). -->
+
+<body>
+    <div class="card hidden">
+        Lorem ipsum dolor sit.
+    </div>
+    <div class="card">
+        Lorem ipsum dolor sit.
+    </div>
+    <div class="card hidden">
+        Lorem ipsum dolor sit.
+    </div>
+    <div class="card">
+        Lorem ipsum dolor sit.
+    </div>
+
+    <script>
+        let card = document.getElementsByClassName("card");
+        for (i = 0; i < card.length; i++) {
+            if (card[i].classList.contains("hidden")) {
+                card[i].classList.remove("hidden");
+            }
+        }
+    </script>
+</body>
+
+<!-- Задание 2.1.7.
+    1. Получите все ссылки.
+    2. Проверьте, есть ли в ссылке текст "ссылка", и если нет, то добавьте. -->
+
+<body>
+    <a href="#">ссылка</a>
+    <a href="#"></a>
+    <a href="#">ссылка</a>
+    <a href="#"></a>
+
+    <script>
+        let a = document.querySelectorAll("a");
+        for (i = 0; i < a.length; i++) {
+            if (a[i].innerText != "ссылка") {
+                a[i].innerText = "ссылка";
+            }
+        };
+    </script>
+</body>
+
+<!-- 
+    Задание 2.1.8.
+    1. Получите все теги b.
+    2. С помощью метода contains() из classList, проверьте, есть ли у тега
+    класс sign, и если нет, то тогда добавьте с помощью метода add()
+    -->
+
+<body>
+    <b>Lorem, ipsum.</b>
+    <b class="sign">Lorem, ipsum.</b>
+    <b class="sign">Lorem, ipsum.</b>
+    <b>Lorem, ipsum.</b>
+
+    <script>
+        let b = document.querySelectorAll("b");
+        for (i = 0; i < b.length; i++) {
+            if (!b[i].classList.contains("sign")) {
+                b[i].classList.add("sign");
+            }
+        };
+    </script>
+</body>
+
+<!-- 
+    Задание 2.1.9.
+    1. Получите коллекцию тегов i.
+    2. Пробегитесь по этой коллекции и с помощью classList.toggle() сделайте,
+    чтобы где класс green есть, его не стало, а где нету, чтобы появился.
+    -->
+
+<body>
+    <i class="green">тут текст НЕ должен быть зеленым</i>
+    <i>здесь текст сделайте зеленым</i>
+    <i class="green">тут текст НЕ должен быть зеленым</i>
+    <i>здесь текст сделайте зеленым</i>
+
+    <script>
+        let i = document.querySelectorAll("i");
+        for (j = 0; j < i.length; j++) {
+            i[j].classList.toggle("green");
+        };
+    </script>
+</body>
+
+<!-- 
+    Задание 2.2.1.
+    1. Получите кнопку и сохраните ее в переменную.
+    2. Назначьте кнопке обработку клика.
+    3. У функции-обработчика клика сделайте параметр event
+    4. При клике из event.target выведите в консоль: id, имя класса (используйте
+    свойство className), текст на кнопке.
+    -->
+
+<body>
+    <button id="one" class="btn">Кнопка 1</button>
+
+    <script>
+        let btn = document.querySelector("button");
+        btn.addEventListener("click", function (event) {
+            console.log(event.target.id);
+            console.log(event.target.className);
+            console.log(event.target.innerText);
+
+        });
+    </script>
+</body>
+
+<!-- 
+    Задание 2.2.2.
+    1. Назначьте обработку клика по параграфу, у функции обработчика объявите
+    параметр event.
+    2. При клике выведите в консоль event.target.classList
+    3. Переберите с помощью forEach event.target.classList и выведите каждый класс
+    в консоль.
+    -->
+
+<body>
+    <p class="first second third">
+        Lorem ipsum dolor sit.
+    </p>
+
+    <script>
+        let p = document.querySelector("p");
+        p.addEventListener("click", function (event) {
+            console.log(event.target.classList);
+            let list = event.target.classList;
+            list.forEach(element => {
+                console.log(element);
+            });
+
+        });
+    </script>
+</body>
+
+<!-- 
+    Задание 2.2.3.
+    1. Сохраните ссылку на div в переменную
+    2. Назначьте div'у обработку клика, у функции-обработчика объявите параметр event.
+    3. При клике из event.target c помощью getAttribute() получите значение
+    каждого атрибута и выведите в консоль.
+    -->
+
+<body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        текст
+    </div>
+
+    <script>
+        let div = document.querySelector("div");
+        div.addEventListener("click", function (event) {
+            console.log(event.target.getAttribute("class"));
+            console.log(event.target.getAttribute("id"));
+            console.log(event.target.getAttribute("tabindex"));
+            console.log(event.target.getAttribute("aria-labelledby"));
+            console.log(event.target.getAttribute("aria-hidden"));
+        });
+    </script>
+</body>
+
+<!-- 
+    Задание 2.2.4.
+    1. Сохраните в переменную ссылку на .product
+    2. Назначьте обработку клика по .product, у функции обработчика объявите
+    параметр event.
+    3. Сделайте, чтобы при клике содержимое .product поменялось на:
+    <div>Другой товар</div>
+    <div>Другое описание</div>
+    для этого вышеописанную разметку пишите в виде строки в innerHTML.
+    -->
+
+<body>
+    <div class="product">
+        <span class="productName">Товар 1</span>
+        Описание товара
+    </div>
+
+    <script>
+        let product = document.querySelector(".product");
+        product.addEventListener("click", function (event) {
+            event.target.innerHTML = "<div>Другой товар</div><div>Другое описание</div>"
+        });
+    </script>
+</body>
+
+<!-- Задание 2.2.5. 
+    Назначьте обработчик клика по ul и при клике выводите в консоль
+    элемент, на котором произошел клик, с помощью event.target, где event - это
+    объект события, передаваемый в функцию-обработчик клика. -->
+
+<body>
+    <ul>
+        <li>
+            <button>Кнопка</button>
+        </li>
+        <li>
+            <button>Кнопка</button>
+        </li>
+        <li>
+            <button>Кнопка</button>
+        </li>
+    </ul>
+
+    <script>
+        let ul = document.querySelector("ul");
+        ul.addEventListener("click", function (event) {
+            console.log(event.target);
+        });
+    </script>
+</body>
+
+<!-- Задание 3.1.1. 
+    Сделайте с помощью javascript размер шрифта в кнопке 30px,
+    а в textarea сделайте зеленый фон. Используйте свойство style у каждого
+    из элементов. -->
+
+<body>
+    <button>Кнопка</button>
+    <textarea></textarea>
+
+    <script>
+        let btn = document.querySelector("button");
+        let textarea = document.querySelector("textarea");
+        btn.setAttribute("style", "font-size:30px");
+        textarea.setAttribute("style", "background-color:green");
+    </script>
+</body>
