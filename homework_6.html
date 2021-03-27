@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeekBrains Homework 3</title>
+</head>
+
+<!-- Задание 1.1.
+    Сделайте чтобы в src была картинка 2.jpg, для этого:
+    1. Найдите картинку, например с помощью querySelector
+    2. Измените атрибут src, например с помощью setAttribute 
+-->
+
+<body>
+    <img src="images/1.jpg" alt="">
+
+    <script>
+        "use strict";
+
+        let img = document.querySelector("img");
+        img.setAttribute("src", "images/2.jpg");
+
+    </script>
+</body>
+
+<!-- Задание 1.2. 
+    Найдите все дивы и добавьте им padding: 10px, для этого:
+    1. Найдите все дивы, например с помощью getElementsByTagName.
+    2. Затем с помощью цикла пройдитесь по этой коллекции, и обращаясь к
+    каждому элементу, обратитесь к его свойству style, а затем к свойству
+    padding. 
+-->
+
+<body>
+    <div>Lorem, ipsum dolor.</div>
+    <div>Lorem, ipsum dolor.</div>
+    <div>Lorem, ipsum dolor.</div>
+
+    <script>
+        "use strict";
+
+        let divs = document.getElementsByTagName("div");
+
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].style.cssText = "padding: 10px;";
+        }
+
+    </script>
+</body>
+
+<!-- Задание 1.3.
+    1. Сделайте всем элементам .product какой-нибудь фон, для этого:
+        1.1 Найдите все элементы с классом .product, например с помощью
+        querySelectorAll
+        1.2 Затем переберите эту коллекцию, например с помощью forEach,
+        у коллбэк-функции, передаваемой в forEach определите параметр,
+        назовите его например product
+        1.3 Чтобы менять стили обратитесь к параметру product и его свойству
+        style
+
+    2. Сделайте элементам .productName размер шрифта 24px, для этого:
+        2.1 Найдите все элементы с классом .productName, например с помощью
+        querySelectorAll
+        2.2 Затем переберите эту коллекцию, например с помощью forEach,
+        у коллбэк-функции, передаваемой в forEach определите параметр,
+        назовите его например name
+        2.3 Чтобы менять стили обратитесь к параметру name и его свойству
+        style
+-->
+
+<body>
+    <div class="product">
+        <div class="productName">Товар 1</div>
+        <img src="images/1.jpg" alt="">
+        <button>В корзину</button>
+    </div>
+    <div class="product">
+        <div class="productName">Товар 1</div>
+        <img src="images/1.jpg" alt="">
+        <button>В корзину</button>
+    </div>
+    <div class="product">
+        <div class="productName">Товар 1</div>
+        <img src="images/1.jpg" alt="">
+        <button>В корзину</button>
+    </div>
+
+    <script>
+        "use strict";
+
+        let products = document.querySelectorAll(".product");
+
+        products.forEach(function callback(product) {
+            product.style.cssText = "background-color: green;";
+        });
+
+        let productNames = document.querySelectorAll(".productName");
+
+        productNames.forEach(function callback(name) {
+            name.style.cssText = "font-size: 24px;";
+        });
+
+    </script>
+</body>
+
+<!-- Задание 1.4. 
+    Вызовите функцию setTimeout и ей в качестве аргументов передайте:
+    1-аргумент. (это уже сделано) анонимную функцию, которая будет вызвана 
+    через определенный промежуток времени
+    2-аргумент. задержку в милисекундах, которая будет равняться 3 секундам
+
+    Сделайте чтобы в анонимной функции вызывалась функция alert со строкой
+    "message".
+-->
+
+<body>
+
+    <script>
+        "use strict";
+
+        setTimeout(function () {
+            alert("message");
+        }, 3000);
+    </script>
+</body>
+
+<!-- Задание 1.5. 
+    Сделайте, чтобы у всех инпутов снизу был внешний отступ (margin-bottom).
+    1. Получите все инпуты, например с помощью querySelectorAll
+    2. Переберите полученную коллекцию например с помощью forEach
+        2.1 У функции-обработчика, которая будет передаваться в forEach определите
+        параметр input
+        2.2 Чтобы менять стили обращайтесь к свойству style у параметра input
+-->
+
+<body>
+    <form action="">
+        <input type="text"><br>
+        <input type="text"><br>
+        <input type="text"><br>
+        <input type="text"><br>
+    </form>
+
+    <script>
+        "use strict";
+
+        let inputs = document.querySelectorAll("input");
+
+        inputs.forEach(function callback(input) {
+            input.style.cssText = "margin-bottom:20px;"
+        })
+
+    </script>
+</body>
+
+<!-- Задание 1.6. 
+    Инпуты идут один за другим, надо сделать чтобы после каждого инпута
+    появился тег br, чтобы инпуты стали стоять один под другим. Для этого:
+    1. Получите все инпуты, например с помощью querySelectorAll.
+    2. Переберите их с помощью цикла или forEach, и после каждого инпута
+    встявляйте тег br, например с помощью insertAdjacentHTML.
+-->
+
+<body>
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+
+    <script>
+        "use strict";
+
+        let inputs = document.querySelectorAll("input");
+
+        inputs.forEach(function callback(input) {
+            input.insertAdjacentHTML("afterend", "<br>")
+        })
+
+    </script>
+</body>
+
+<!-- Задание 2.1.
+    1. Сохраните в переменную ссылку на span, например с помощью querySelector.
+    2. Сохраните в переменную fromEl ссылку на input, например с помощью getElementById.
+    3. Элементу fromEl назначьте обработку события change, у функции обработчика
+    этого события должен быть параметр event.
+    4. Читайте что было написано в input'e с помощью event.target.value и пишите это значение в span.
+-->
+
+<body>
+    <input id="from" type="text">
+    В инпуте написано: <span></span>
+
+    <script>
+        "use strict";
+
+        let span = document.querySelector('span');
+        let fromEl = document.getElementById('from');
+        fromEl.addEventListener('change', (event) => {
+            span.innerText = event.target.value;
+        });
+
+    </script>
+</body>
+
+<!-- Задание 2.2.
+    1. Сохраните в переменную btn ссылку на кнопку.
+    2. Сохраните в переменную msg ссылку на .message.
+    3. На btn назначьте обработку клика.
+        3.1 Внутри функции-обработчика сделайте чтобы у msg display становился block.
+        3.2 Для msg с помощью classList.add() добавьте классы animate__animated и
+        animate__fadeInLeftBig
+-->
+
+<body>
+    <button>Показать блок</button>
+    <div class="message">
+        Lorem ipsum dolor sit.
+    </div>
+
+    <script>
+        "use strict";
+
+        let btn = document.querySelector('button');
+        let msg = document.querySelector('.message');
+
+        btn.addEventListener('click', function () {
+            msg.style.display = 'block';
+            msg.classList.add("animate__animated", "animate__fadeInLeftBig");
+        });
+    </script>
+</body>
+
+<!-- Задание 2.3. 
+    Используя заготовку, сделайте чтобы при наведении на вторую звезду
+    подсвечивались первая и вторая звезды. При наведени на третью звезду подсвечивались
+    первая, вторая и третья звезды, и т.д. 
+    mouseover - это событие срабатывает когда мы наводим на элемент.
+    mouseout - это событие срабатывает когда мы перестаем наводить на элемент.
+    Вы можете пойти более продвинутым путем, и получать предыдущий элемент 
+    например с помощью https://mzl.la/3a4SPlR
+-->
+
+<body>
+    <i id="first" class="fas fa-star"></i>
+    <i id="second" class="fas fa-star"></i>
+    <i id="third" class="fas fa-star"></i>
+    <i id="fourth" class="fas fa-star"></i>
+    <i id="fifth" class="fas fa-star"></i>
+
+    <script>
+        let firstStar = document.getElementById('first');
+        let secondStar = document.getElementById('second');
+        let thirdStar = document.getElementById('third');
+        let fourthStar = document.getElementById('fourth');
+        let fifthStar = document.getElementById('fifth');
+
+        let goldenClass = 'golden';
+
+        let stars = document.querySelectorAll('i');
+
+        for (let i = 0; i < stars.length; i++) {
+
+            stars[i].addEventListener('mouseover', function () {
+                if (!stars[i].classList.contains('goldenClass')) {
+                    stars[i].classList.add(goldenClass);
+                }
+
+                let haveLeft = stars[i].previousElementSibling;
+                let j = i;
+                while (haveLeft) {
+                    j = j - 1;
+                    stars[j].classList.add(goldenClass);
+                    haveLeft = stars[j].previousElementSibling;
+                }
+            });
+
+            stars[i].addEventListener('mouseout', function () {
+                stars[i].classList.remove(goldenClass);
+
+                let haveLeft = stars[i].previousElementSibling;
+                let j = i;
+                while (haveLeft) {
+                    j = j - 1;
+                    stars[j].classList.remove(goldenClass);
+                    haveLeft = stars[j].previousElementSibling;
+                }
+            });
+
+        }
+
+    </script>
+</body>
