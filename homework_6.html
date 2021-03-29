@@ -294,3 +294,230 @@
 
     </script>
 </body>
+
+<!-- Задание 3.1. 
+    Надо сделать, чтобы по клику на крестик исчезало тот блок
+    с сообщением, в котором этот крестик находится. Для этого:
+    1. Получите все кнопки, например с помощью querySelectorAll 
+    2. Переберите полученную коллекцию, например с помощью forEach
+    2.1 Методу forEach передавайте callback-функцию с параметром button
+    3. Каждому button назначьте обработчик клика, с помощью addEventListener,
+    а самим обработчиком клика будет функция closeClickHandler (в коде ниже)
+    4. В функции closeClickHandler из объекта события event обратитесь
+    к currentTarget, затем обратитесь к родительскому узлу, затем к свойству
+    style, наконец сделайте display: none
+-->
+
+<body>
+    <div class="container">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        "use strict";
+
+        let btns = document.querySelectorAll('button');
+
+        btns.forEach(function callback(button) {
+            button.addEventListener('click', function () {
+                closeClickHandler(button);
+            })
+        });
+
+        function closeClickHandler(event) {
+            event.parentNode.style.display = 'none';
+        }
+    </script>
+</body>
+
+<!-- Задание 3.2. 
+    Нужно чтобы при клике по кнопке, блок .product, в котором она
+    находится становился цвета (имеется в виду background) lightgreen, а текст на 
+    кнопке стал "Добавлено", для этого:
+    1. Найдите все кнопки, например с помощью querySelectorAll
+    2. Переберите полученную коллекцию кнопок, например с помощью forEach,
+    и каждой кнопке назначьте в качестве обработчика клика фукнцию
+    buttonClickHandler (увидите ее ниже в коде)
+    3. Когда функция buttonClickHandler будет срабатывать вы из объекта
+    события получаете элемент на котором произошло событие (свойство target),
+    затем получаете родителя кнопки по коротой кликнули (свойство parentNode),
+    затем обращаетесь к свойству style, а затем к свойству background и
+    ставите цвет lightgreen.
+    3.1 Также во время срабатывания функции buttonClickHandler из обекта
+    события (параметр event) вы получаете кнопку на которой произошло
+    событие (свойство target) и меняете у нее текст на "Добавлено".
+-->
+
+<body>
+    <div class="product">
+        <div>Товар 1</div>
+        <img src="images/1.jpg" alt="">
+        <button>В корзину</button>
+    </div>
+    <div class="product">
+        <div>Товар 1</div>
+        <img src="images/2.jpg" alt="">
+        <button>В корзину</button>
+    </div>
+    <div class="product">
+        <div>Товар 1</div>
+        <img src="images/3.jpg" alt="">
+        <button>В корзину</button>
+    </div>
+
+    <script>
+
+        let btns = document.querySelectorAll('button');
+
+        btns.forEach(function callback(button) {
+            button.addEventListener('click', function () {
+                buttonClickHandler(button);
+            })
+        });
+
+        //почему-то evet.target выдает undefined, а просто event работает как надо
+        function buttonClickHandler(event) {
+            event.parentNode.style.background = 'lightgreen';
+            event.innerText = 'Добавлено';
+        }
+    </script>
+</body>
+
+<!-- Задание 3.3. 
+    Вам нужно проверять пусто ли в input'ах при отправке формы.
+    Если в инпуте пусто делаете ему красную рамку. Если хотя бы в одном
+    инпуте пусто форма не должна отправляться.
+    1. сохраните в переменную formEl ссылку на форму
+    2. сохраните в переменную ссылку на input#first
+    3. сохраните в переменную ссылку на input#second
+    4. на formEl назначьте обработку события отправки формы (submit),
+    у функции-обработчика объявите параметр event.
+        4.1 в функции-обработчике вы проверяете пусты ли input'ы, для этого
+        читайте у них свойство value
+        4.2 если input пустой тогда вы обращаетесь к его style.borderColor
+        и делаете его равным red
+        4.3 чтобы остановить отправку формы используйте event.preventDefault()
+-->
+
+<body>
+    <form>
+        <input id="first" type="text"><br>
+        <br>
+        <input id="second" type="text"><br>
+        <br>
+        <button>Отправить</button>
+    </form>
+
+    <script>
+
+        let formEl = document.querySelector('form');
+        let inputFirst = document.querySelector('#first');
+        let inputSecond = document.querySelector('#second');
+
+        formEl.addEventListener('submit', function (event) {
+            if (inputFirst.value == '') {
+                event.preventDefault();
+                inputFirst.style.borderColor = 'red';
+            }
+            if (inputSecond.value == '') {
+                event.preventDefault();
+                inputSecond.style.borderColor = 'red';
+            }
+        });
+
+    </script>
+</body>
+
+<!-- Задание 3.4. 
+    Сделайте, чтобы при прокрутке от верха экрана больше чем на 500px появлялся
+    блок #goToTop, а если меньше, то чтобы исчезал.
+    1. Сохраните в переменную goToTopEl ссылку на div#goToTop
+    2. Назначьте обработку события scroll для объекта window.
+    3. В функции-обработчике проверяйте величину window.pageYOffset если она больше
+    500, тогда goToTopEl надо показать, иначе скрыть.
+    4. Показывайте и скрывайте с помощью свойства display у объекта style.
+-->
+
+<body>
+    Lorem ipsum
+    <div id="goToTop">Наверх</div>
+
+    <script>
+
+        let goToTopEl = document.querySelector('#goToTop');
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 500) {
+                goToTopEl.style.display = 'block';
+            } else {
+                goToTopEl.style.display = 'none';
+            }
+        });
+
+    </script>
+
+</body>
+
+<!-- Задание 3.5. 
+    Нужно через 3 секунды заменить все картинки loading.gif на картинки
+    из папки images.
+    1. Получите все картинки например с помощью querySelectorAll
+    2. Переберите эту коллекцию с помощью цикла for, в цикле каждой картинке
+    установите атрибут src (например с помощью setAttribute) равный 
+    "images/здесь_нужно_поставить_правильное_имя_файла".
+    3. Наконец весь код оберните в setTimeout, и выставите задержку 3 сек.
+-->
+
+<body>
+    <div class="products">
+        <div class="product">
+            <div class="imgWrap">
+                <img src="images/loading.gif" alt="">
+            </div>
+            <div>Товар 1</div>
+            <div>33.88 р.</div>
+        </div>
+        <div class="product">
+            <div class="imgWrap">
+                <img src="images/loading.gif" alt="">
+            </div>
+            <div>Товар 2</div>
+            <div>240.41 р.</div>
+        </div>
+        <div class="product">
+            <div class="imgWrap">
+                <img src="images/loading.gif" alt="">
+            </div>
+            <div>Товар 3</div>
+            <div>971.36 р.</div>
+        </div>
+    </div>
+
+    <script>
+
+        let imgs = document.querySelectorAll('img');
+        setTimeout(function () {
+            for (let i = 0; i < imgs.length; i++) {
+                let imgSource = 'images/' + (i + 1) + '.jpg';
+                imgs[i].setAttribute('src', imgSource);
+            }
+        }, 3000);
+
+    </script>
+</body>
