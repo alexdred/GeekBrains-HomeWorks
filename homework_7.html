@@ -10,6 +10,451 @@
 
 <body>
 
+    <!-- Задание 1.1.
+        Используя цикл for in переберите объект products, ведите в консоль
+        имя свойства, значение свойства.
+    -->
+
+    <script>
+
+        'use strict';
+
+        const products = {
+            one: "один",
+            two: "два",
+            three: "три",
+        };
+
+        for (property in products) {
+            console.log(property + ": " + products[property]);
+        }
+
+    </script>
+
+    <!-- 
+    Задание 1.2. 
+        С помощью innerHTML очистите содержимое параграфа.
+    -->
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing.
+    </p>
+
+    <script>
+
+        'use strict';
+
+        let p = document.querySelector('p');
+        p.innerText = "";
+
+    </script>
+
+    <!-- Задание 1.3.
+        Дописывайте в строку totalString с помощью цикла и конкатенации строки,
+        так, чтобы итоговое значение в totalString получилось: слово1слово2слово3 
+    -->
+
+    <script>
+
+        'use strict';
+
+        let totalString = "";
+
+        for (let i = 0; i < 3; i++) {
+            totalString += "слово" + (i + 1);
+        }
+
+        console.log(totalString);
+
+    </script>
+
+    <!-- Задание 1.4.
+        С помощью insertAdjacentHTML добавьте в body ссылку по примеру из комментария выше.
+        При создании разметки используйте шаблонный литерал. Данные для ссылки ниже.
+    -->
+
+    <script>
+
+        'use strict';
+
+        let url = "https://picsum.photos/200/300";
+        let targetAttr = "_blank";
+        let linkText = "ссылка";
+        let link = `<a href=${url} target=${targetAttr}>${linkText}</a>`
+
+        let body = document.querySelector('body');
+        body.insertAdjacentHTML('afterbegin', `${link}`);
+
+    </script>
+
+    <!-- Задание 2.1. 
+        Нужно при клике на кнопку выводить в консоль значения ее
+        data- атрибутов.
+        1. Получите все кнопки например с помощью querySelectorAll
+        2. Переберите полученную коллекцию, например с помощью forEach
+        2.1 data- атрибуты можете читать например с помощью свойства dataset
+        у каждой кнопки.
+    -->
+
+    <button data-id="1" data-value="btn1">Кнопка 1</button>
+    <button data-id="2" data-value="btn2">Кнопка 2</button>
+    <button data-id="3" data-value="btn3">Кнопка 3</button>
+
+    <script>
+
+        'use strict';
+
+        let btns = document.querySelectorAll('button');
+
+        btns.forEach(function callback(button) {
+            button.addEventListener('click', function () {
+                for (data in button.dataset) {
+                    console.log(button.dataset[data]);
+                }
+            })
+        });
+
+    </script>
+
+
+    <!-- Задание 2.2.
+        С помощью цилка for добавьте в body 6 картинок, по примеру тех, что закомментированы
+        выше. Картинки вставляйте со помощью insertAdjacentHTML. При генерации разметки
+        пользуйтесь шаблонным литералом. Куда должен вставляться счетчик цилка 
+    -->
+
+    <script>
+
+        'use strict';
+
+        let links = "";
+
+        for (let i = 1; i <= 6; i++) {
+            links += `<img src="https://picsum.photos/200/300?random=${i}" alt="${i}">`
+        }
+
+        let body = document.querySelector('body');
+        body.insertAdjacentHTML('afterbegin', `${links}`);
+
+    </script>
+
+    <!-- Задание 2.3. 
+        Нужно чтобы при смещении ползунка в div менялся размер шрифта.
+        1. Получите ссылку на input.
+        2. Получите ссылку на div.
+        3. Input'у поставьте прослушивание события 'input';
+            3.1 У функции-обработчика определите параметр event.
+            3.2 Значение input'а читайте из event.target.value.
+    -->
+
+    <input type="range" min="20" max="100">
+    <div>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat, expedita.
+    </div>
+
+    <script>
+
+        'use strict';
+
+        let input = document.querySelector('input');
+        let div = document.querySelector('div');
+        input.setAttribute('value', `${input.min}`);
+
+        input.addEventListener('input', function (event) {
+            div.style.fontSize = `${event.target.value}px`;
+        })
+
+    </script>
+
+    <!-- Задание 3.1. 
+        Нужно сделать, чтобы при кликах по .nav-link:
+        1. Класс active назначался тому .nav-link, по которому кликнули, а у предыдущего
+        .nav-link, чтобы этот класс убирался.
+        2. В зависимости от того по какому .nav-link кликнули нужно чтобы менялся текст в .text
+    -->
+
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Link 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link 3</a>
+            </li>
+        </ul>
+
+        <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+    </div>
+
+    <script>
+
+        'use strict';
+        const texts = {
+            text1: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            text2: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.',
+            text3: 'Проснувшись однажды утром после беспокойного сна, Грегор Замза обнаружил.'
+        };
+
+        let text = document.querySelector('.text');
+        let navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(function callback(link) {
+            link.addEventListener('click', clickHandler);
+        })
+
+
+        /**
+         * Обработчик клика по .nav-link
+         * @param {MouseEvent} event 
+         */
+        function clickHandler(event) {
+            // здесь вызывайте changeText и changeActiveClass, и передавайте
+            // им объект события.
+            changeText(event.target);
+            changeActiveClass(event.target);
+        }
+
+        /**
+         * Эта функция должна убирать .active у предыдущего .nav-link и ставить его
+         * на тот, по которому кликнули.
+         * @param {MouseEvent} event 
+         */
+        function changeActiveClass(event) {
+            navLinks.forEach(function callback(link) {
+                link.classList.remove('active');
+            });
+            event.classList.add('active');
+        }
+
+        /**
+         * Эта фукнция должна читать текст (например через textContent) из 
+         * .nav-link по которому кликнули и в зависимости от этого в .text
+         * ставить соответствующий текст из texts.
+         * @param {MouseEvent} event 
+         */
+        function changeText(event) {
+            switch (event.textContent) {
+                case 'Link 1':
+                    text.innerText = texts.text1;
+                    break;
+                case 'Link 2':
+                    text.innerText = texts.text2;
+                    break;
+                case 'Link 3':
+                    text.innerText = texts.text3;
+                    break;
+            }
+        }
+
+    </script>
+
+    <!-- Задание 3.2. 
+        Вам нужно чтобы при клике на кнопку появлялось сообщение .message
+        снизу экрана, в общем как сообщения вконтакте.
+        1. Аудио воспроизводите как здесь https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
+        2. Чтобы получить высоту .message, используйте свойство clientHeight
+        3. Чтобы анимировать перемещение .message используйте стиль transform
+        как здесь https://webref.ru/css/value/translatey
+    -->
+
+    <button>Показать сообщение</button>
+    <div class="message">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aliquam enim voluptates quibusdam
+        perferendis sint ipsa, nulla quas doloribus nobis libero voluptatem unde inventore. Ut quas corporis fugit error
+        explicabo? Ipsa quos qui similique sequi officia quod ab reiciendis alias!
+    </div>
+
+    <script>
+
+        let audio = new Audio('notification.mp3');
+        let message = document.querySelector('.message');
+        let btn = document.querySelector('button');
+
+        btn.addEventListener('click', function () {
+            audio.play();
+            message.style.transform = `translateY(-${message.clientHeight + 30}px)`;
+        })
+
+    </script>
+
+    <!-- Задание 4.1.
+        Вам нужно при кликах по кнопкам показывать соответствующие товары.
+        Информация о товарах находится в объекте products в файле app.js. Для генерации
+        разметки можете использовать шаблон представленный в app.js.
+    -->
+
+    <button data-type="phones">Показать смартфоны</button>
+    <button data-type="tablets">Показать планшеты</button>
+    <button data-type="tv">Показать телевизоры</button>
+
+    <div class="products"></div>
+
+    <script>
+        "use strict";
+        /* 
+        Разметка товара:
+        
+        <div class="product">
+            <div>${здесь_название_товара}</div>
+            <img src="${здесь путь до картинки}" alt="">
+            <div>${здесь_цена}</div>
+            <a href="https://example.com/producs/${здесь_id_товара}">Подробнее</a>
+        </div>
+        */
+
+        const products = {
+            phones: [
+                {
+                    id: 1,
+                    name: "Смартфон 1",
+                    price: "23,99 р.",
+                    imageUrl: "https://picsum.photos/seed/1/200",
+                },
+                {
+                    id: 2,
+                    name: "Смартфон 2",
+                    price: "11,99 р.",
+                    imageUrl: "https://picsum.photos/seed/2/200",
+                },
+                {
+                    id: 3,
+                    name: "Смартфон 3",
+                    price: "22,99 р.",
+                    imageUrl: "https://picsum.photos/seed/3/200",
+                },
+            ],
+
+            tablets: [
+                {
+                    id: 4,
+                    name: "Планшет 4",
+                    price: "99,99 р.",
+                    imageUrl: "https://picsum.photos/seed/4/200",
+                },
+                {
+                    id: 5,
+                    name: "Планшет 5",
+                    price: "44,99 р.",
+                    imageUrl: "https://picsum.photos/seed/5/200",
+                },
+            ],
+
+            tv: [
+                {
+                    id: 6,
+                    name: "Телевизор 6",
+                    price: "199,99 р.",
+                    imageUrl: "https://picsum.photos/seed/6/200",
+                },
+                {
+                    id: 7,
+                    name: "Телевизор 7",
+                    price: "244,99 р.",
+                    imageUrl: "https://picsum.photos/seed/7/200",
+                },
+                {
+                    id: 8,
+                    name: "Телевизор 8",
+                    price: "399,99 р.",
+                    imageUrl: "https://picsum.photos/seed/8/200",
+                },
+                {
+                    id: 9,
+                    name: "Телевизор 9",
+                    price: "444,99 р.",
+                    imageUrl: "https://picsum.photos/seed/9/200",
+                },
+            ],
+        };
+
+        let btns = document.querySelectorAll('button');
+        let productsDiv = document.querySelector('.products');
+        let content = "";
+
+        btns.forEach(function callback(button) {
+            button.addEventListener('click', clickHandler);
+        });
+
+        /**
+         * Эта функция должна вызываться при клике по кнопкам.
+         * @param {MouseEvent} event
+         */
+        function clickHandler(event) {
+            //вам нужно очищать содержимое .products
+            content = "";
+
+            //в showCategory надо передать строку с типом категории, тип берите
+            //из атрибута data-type у кнопки, по которой кликнули.
+
+            showCategory(event.target.getAttribute('data-type'));
+            productsDiv.innerHTML = content;
+        }
+
+        /**
+         * Функция берет товары (объекты) из соответствующего массива phones,
+         * tablets или tv. Генерирует разметку, используя getProductMarkup
+         * и вставляет в .products
+         * @param {string} category сюда должно прилетать значение атрибута data-type у кнопки,
+         * по которой кликнули.
+         */
+        function showCategory(category) {
+            products[category].forEach(function callback(product) {
+                getProductMarkup(product);
+            })
+        }
+
+        /**
+         * @param {Object} product объект из массива phones, tablets или tv.
+         * @param {number} product.id id продукта
+         * @param {string} product.name название продукта
+         * @param {string} product.price цена продукта
+         * @param {string} product.imageUrl путь до картинки товара
+         * @returns {string} html-разметка для товара по аналогии из комментария
+         * в верху этого файла.
+         */
+        function getProductMarkup(product) {
+            content += `
+                <div class="product">
+                    <div>${product.name}</div>
+                    <img src="${product.imageUrl} " alt="">
+                    <div>${product.price}</div>
+                    <a href="https://example.com/producs/${product.id}">Подробнее</a>
+                </div>
+            `;
+        }
+    </script>
+
+    <!-- Задание 4.2.
+        Нужно имитировать заполнение прогресс-бара в div.
+    -->
+
+    <div></div>
+
+    <script>
+        let div = document.querySelector('div');
+
+        function changeProgress(percent) {
+            div.style.background = `linear-gradient(90deg, rgba(38,255,162,1) ${percent}%, rgba(255,255,255,1) ${percent}%)`;
+        }
+
+        //я не понял как этого добиться и решение нашел в интернете, но понять как работает function(index) я тоже сразу не смог. Посмотрев ваше решение я понял, что для каждого "i" необходима своя задержка и например для 90й "i" надо задержка в 90 раз больше, чем для первой
+        for (let i = 0; i <= 100; i++) {
+            (function (index) {
+                setTimeout(function () {
+                    changeProgress(index);
+                }, (50 * index));
+            })(i);
+
+            //в итоге как я понял в этом варианте в конце функции написано ...(i); что видимо значит, что index = i в этой функции и получается так же как и у вас, только длинее
+        }
+
+    </script>
+
+
+
 </body>
 
 </html>
